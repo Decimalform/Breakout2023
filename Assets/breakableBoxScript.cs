@@ -14,6 +14,7 @@ public class breakableBoxScript : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.up, out hitUp))
         {
             print("hitDown " + hitUp.collider.gameObject);
+            print("UP IS FUNCTIONAL");
         }
         distanceUp = hitUp.distance;
 
@@ -21,46 +22,56 @@ public class breakableBoxScript : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hitDown))
         {
             print("hitDown " + hitDown.collider.gameObject);
+            print("DOWN IS FUNCTIONAL");
         }
         distanceDown = hitDown.distance;
 
 
-        if (hitUp.collider.name != "top wall" && hitDown.collider.name == "bottom wall" || hitDown.collider.name == "Stearing platform")
+        if (/*hitUp.collider.name != "top wall" && hitDown.collider.name == "bottom wall" || hitDown.collider.name == "Stearing platform" || hitDown.collider.name == "Sphere"*/ hitUp.collider.tag != "breakableBox" && hitDown.collider.tag == "breakableBox")  
         {
-            foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
+            /*foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
             {
                 if (gameObj.tag == "breakableBox")
                 {
-                    gameObj.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+                    gameObj.GetComponent<Renderer>().material.color = Color.red;
+                    print("Colour is red");
                     //red
                 }
-            }
+            }*/
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+                print("Colour is red");
         }
 
         
-        if (hitDown.collider.name == "bottom wall" || hitDown.collider.name != "Stearing platform" && hitUp.collider.name != "top wall")
+        if (/*hitDown.collider.name == "bottom wall" || hitDown.collider.name != "Stearing platform" || hitDown.collider.name != "Sphere" && hitUp.collider.name != "top wall"*/ hitUp.collider.tag == "breakableBox" && hitDown.collider.tag != "breakaBlebox")
         {
-            foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
+            /*foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
             {
                 if (gameObj.tag == "breakableBox")
                 {
-                    gameObj.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+                    gameObj.GetComponent<Renderer>().material.color = Color.green;
+                    print("Colour is green");
                     //green
                 }
-            }
+            }*/
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+            print("Colour is green");
         }
 
 
-        if (hitUp.collider.name != "top wall" && hitDown.collider.name != "bottom wall" || hitDown.collider.name != "Stearing platform")
+        if (/*hitUp.collider.name != "top wall" && hitDown.collider.name != "bottom wall" || hitDown.collider.name != "Stearing platform" || hitDown.collider.name != "Sphere"*/ hitUp.collider.tag == "breakableBox" && hitDown.collider.tag == "breakableBox")
         {
-            foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
+            /*foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
             {
                 if (gameObj.tag == "breakableBox")
                 {
-                    gameObj.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+                    gameObj.GetComponent<Renderer>().material.color = Color.yellow;
+                    print("Colour is yellow");
                 }
-                //blue
-            }
+                //blue or yellow
+            }*/
+            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            print("Colour is yellow");
         }
     }
 
